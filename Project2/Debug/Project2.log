@@ -1,14 +1,10 @@
 ﻿  Source.c
-D:\Visual Studio Projects\Rebus\Project2\Source.c(20,20): warning C4018: <: несоответствие типов со знаком и без знака
-D:\Visual Studio Projects\Rebus\Project2\Source.c(60,20): warning C4018: <: несоответствие типов со знаком и без знака
-D:\Visual Studio Projects\Rebus\Project2\Source.c(87,21): warning C4018: <: несоответствие типов со знаком и без знака
-D:\Visual Studio Projects\Rebus\Project2\Source.c(72,1): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
-D:\Visual Studio Projects\Rebus\Project2\Source.c(105,19): warning C4047: функция: "int *" отличается по уровням косвенного обращения от "int (*)[10]"
-D:\Visual Studio Projects\Rebus\Project2\Source.c(105,15): warning C4024: find_sum: различные типы для формального и фактического параметров 1
-D:\Visual Studio Projects\Rebus\Project2\Source.c(113,21): warning C4047: функция: "int *" отличается по уровням косвенного обращения от "int (*)[10]"
-D:\Visual Studio Projects\Rebus\Project2\Source.c(113,17): warning C4024: find_sum: различные типы для формального и фактического параметров 1
-D:\Visual Studio Projects\Rebus\Project2\Source.c(117,10): warning C4098: variations: функция типа "void", возвращающая значение
-D:\Visual Studio Projects\Rebus\Project2\Source.c(127,27): warning C4018: <: несоответствие типов со знаком и без знака
-D:\Visual Studio Projects\Rebus\Project2\Source.c(132,17): warning C4018: <: несоответствие типов со знаком и без знака
-D:\Visual Studio Projects\Rebus\Project2\Source.c(65): warning C4715: position: значение возвращается не при всех путях выполнения
+D:\Visual Studio Projects\Rebus\Project2\Source.c(21,20): warning C4018: <: несоответствие типов со знаком и без знака
+D:\Visual Studio Projects\Rebus\Project2\Source.c(69,20): warning C4018: <: несоответствие типов со знаком и без знака
+D:\Visual Studio Projects\Rebus\Project2\Source.c(105,21): warning C4018: <: несоответствие типов со знаком и без знака
+D:\Visual Studio Projects\Rebus\Project2\Source.c(90,1): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+D:\Visual Studio Projects\Rebus\Project2\Source.c(139,10): warning C4098: variations: функция типа "void", возвращающая значение
+D:\Visual Studio Projects\Rebus\Project2\Source.c(149,27): warning C4018: <: несоответствие типов со знаком и без знака
+D:\Visual Studio Projects\Rebus\Project2\Source.c(154,17): warning C4018: <: несоответствие типов со знаком и без знака
+D:\Visual Studio Projects\Rebus\Project2\Source.c(74): warning C4715: position: значение возвращается не при всех путях выполнения
   Project2.vcxproj -> D:\Visual Studio Projects\Rebus\Debug\Project2.exe

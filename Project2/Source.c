@@ -5,6 +5,7 @@
 #pragma warning(disable:4996)
 
 unsigned count_of_variants = 0;
+char sum_first = 0;
 char str[100] = { 0 }, letters[10] = { 0 };
 
 void print(int* values, int n)
@@ -24,9 +25,17 @@ int beginning(char symbol)
 			i++;
 			if (str[i] == symbol)
 				return 1;
+			if (str[i - 1] == '=') return 0;
 		}
 	}
 	return 0;
+}
+
+void char_swap(char* a, int i, int j)
+{
+	char s = a[i];
+	a[i] = a[j];
+	a[j] = s;
 }
 
 void swap(int* a, int i, int j)
@@ -64,8 +73,17 @@ int position(char symbol)
 	}
 }
 
-int find_sum(int* sum, int* values, int* length, int count)
+int equal_length(int* length, int count)
 {
+	for (int i = 1; i < count; i++)
+		if (length[i] != length[i - 1]) return 0;
+	if (length[count] != length[0] + 1) return 0;
+	return 1;
+}
+
+int find_sum(int* values, int* length, int count)
+{
+	int sum[10] = { 0 };
 	for (int i = 0, pos = 0; length[i] != 0; i++)
 	{
 		sum[i] = 0;
@@ -98,20 +116,23 @@ int find_sum(int* sum, int* values, int* length, int count)
 
 void variations(int* values, int n, int m, int* length, int count)
 {
-	int sum[10] = { 0 };
 	for (int i = 0; i < n; i++)
 		values[i] = i;
-	if (m > 1) swap(values, 0, 1);
-	if (find_sum(&sum, values, length, count)) return;
+	if (equal_length(length, count))
+		char_swap(letters, position(sum_first), 0);
+	else swap(values, 0, 1);
+	if (find_sum(values, length, count)) return;
 	if (n >= m)
 	{
 		while (next(values, n, m))
 		{
 			for (int i = 0; i < m; i++)
+			{
 				if ((values[i] == 0) && (beginning(letters[i])) && (i < m - 1))
 					swap(values, i, i + 1);
-			if (find_sum(&sum, values, length, count)) return;
+			}
 			count_of_variants++;
+			if (find_sum(values, length, count)) return;
 		}
 	}
 	return 0;
@@ -120,7 +141,7 @@ void variations(int* values, int n, int m, int* length, int count)
 
 int main()
 {
-	int length[10] = { 0 }, values[10] = { 0 };;
+	int length[10] = { 0 }, values[10] = { 0 };
 	int count = 0, success = 1;
 	fscanf(stdin, "%s", str);
 	time_t start_time = clock();
@@ -137,6 +158,8 @@ int main()
 			}
 		if (success == 1)
 			letters[j] = str[i];
+		if (str[i] == '=')
+			sum_first = str[i + 1];
 		success = 1;
 	}
 	variations(values, 10, strlen(letters), length, count);
