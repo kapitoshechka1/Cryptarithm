@@ -153,7 +153,7 @@ void variations(int* values, int n, int m, int* length, int count)
 
 int main()
 {
-	int length[10] = { 0 }, values[10] = { 0 };
+	int length[10] = { 0 }, values[11] = { 0 };
 	int count = 0, success = 1;
 	fscanf(stdin, "%s", str);
 	time_t start_time = clock();
