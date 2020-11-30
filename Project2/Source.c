@@ -16,17 +16,13 @@ void begin_end(unsigned* begin, char* str, char* letters, int letter_len, int st
 	begin[0] = 1;
 	for (int i = 1; i < str_len; i++)
 	{
-		begin[0] = 1;
-		for (int i = 1; i < str_len; i++)
+		if ((str[i] == '+') || (str[i] == '='))
 		{
-			if ((str[i] == '+') || (str[i] == '='))
-			{
-				i++;
-				for (int j = 0; j < letter_len; j++)
-					if (letters[j] == str[i])
-						begin[j] = 1;
-				if (str[i - 1] == '=') return;
-			}
+			i++;
+			for (int j = 0; j < letter_len; j++)
+				if (letters[j] == str[i])
+					begin[j] = 1;
+			if (str[i - 1] == '=') return;
 		}
 	}
 }
@@ -103,7 +99,7 @@ int find_sum(char* str, int* values, int* positions, int* length, int str_len, i
 			pos--;
 		}
 		if (sum[i] > sum[count]) return 0;
-			pos--;
+		pos--;
 	}
 	int summa = 0;
 	for (int i = 0; i < count; i++)
@@ -153,7 +149,7 @@ void variations(char* str, int n)
 	if (equal_length(length, count))
 		char_swap(letters, position(letters, sum_first, letter_len), 0);
 	swap(values, 0, 1);
-	find_positions(&positions,str, letters, letter_len, str_len);
+	find_positions(&positions, str, letters, letter_len, str_len);
 	begin_end(&begin, str, letters, letter_len, str_len);
 	if (find_sum(str, values, positions, length, str_len, count)) return;
 	if (n >= letter_len)
