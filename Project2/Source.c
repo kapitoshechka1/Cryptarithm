@@ -4,8 +4,7 @@
 #include <time.h>
 #pragma warning(disable:4996)
 
-unsigned count_of_variants = 0;
-char sum_first = 0;
+unsigned count_of_variants = 0, str_len = 0, letter_len = 0, sum_first = 0;
 char str[100] = { 0 }, letters[10] = { 0 };
 
 void print(int* values, int n)
@@ -15,20 +14,20 @@ void print(int* values, int n)
 	printf("\n");
 }
 
-int beginning(char symbol)
+void beginning(unsigned *begin)
 {
-	if (str[0] == symbol) return 1;
-	for (int i = 1; i < strlen(str); i++)
+	begin[0] = 1;
+	for (int i = 1; i < str_len; i++)
 	{
 		if ((str[i] == '+') || (str[i] == '='))
 		{
 			i++;
-			if (str[i] == symbol)
-				return 1;
-			if (str[i - 1] == '=') return 0;
+			for (int j = 0; j < letter_len; j++)
+				if (letters[j] == str[i])
+					begin[j] = 1;
+			if (str[i - 1] == '=') return;
 		}
 	}
-	return 0;
 }
 
 void char_swap(char* a, int i, int j)
@@ -64,9 +63,19 @@ int next(int* values, int n, int m)
 	return 1;
 }
 
+void find_positions(unsigned* positions)
+{
+	for (int i = 0; i < str_len; i++)
+	{
+		for (int j = 0; j < letter_len; j++)
+			if (letters[j] == str[i])
+				positions[i] = j;
+	}
+}
+
 int position(char symbol)
 {
-	for (int i = 0; i < strlen(letters); i++)
+	for (int i = 0; i < letter_len; i++)
 	{
 		if (letters[i] == symbol)
 			return i;
@@ -81,32 +90,32 @@ int equal_length(int* length, int count)
 	return 1;
 }
 
-int find_sum(int* values, int* length, int count)
+int find_sum(int* values, int* positions, int* length, int count)
 {
 	int sum[10] = { 0 };
-	for (int i = 0, pos = 0; length[i] != 0; i++)
+	for (int i = count, pos = str_len - 1; i >= 0; i--)
 	{
 		sum[i] = 0;
-		int k = pow(10, length[i]);
+		int k = 1;
 		for (int j = length[i]; j > 0; j--)
 		{
-			k /= 10;
-			sum[i] += (values[position(str[pos])] * k);
-			pos++;
+			sum[i] += (values[positions[pos]] * k);
+			k *= 10;
+			pos--;
 		}
-		if ((str[pos] == '+') || (str[pos] == '='))
-			pos++;
+		if (sum[i] > sum[count]) return 0;
+			pos--;
 	}
 	int summa = 0;
 	for (int i = 0; i < count; i++)
 		summa += sum[i];
 	if (summa == sum[count])
 	{
-		for (int i = 0; i < strlen(str); i++)
+		for (int i = 0; i < str_len; i++)
 		{
 			if (str[i] == '+') printf("+");
 			else if (str[i] == '=') printf("=");
-			else printf("%d", values[position(str[i])]);
+			else printf("%d", values[positions[i]]);
 		}
 		printf("\n\nVariants: %d\n", count_of_variants);
 		return 1;
@@ -116,26 +125,29 @@ int find_sum(int* values, int* length, int count)
 
 void variations(int* values, int n, int m, int* length, int count)
 {
+	unsigned begin[10] = { 0 }, positions[100] = { 0 };
 	for (int i = 0; i < n; i++)
 		values[i] = i;
 	if (equal_length(length, count))
 		char_swap(letters, position(sum_first), 0);
-	else swap(values, 0, 1);
-	if (find_sum(values, length, count)) return;
+	swap(values, 0, 1);
+	find_positions(&positions);
+	beginning(&begin);
+	if (find_sum(values, positions, length, count)) return;
 	if (n >= m)
 	{
 		while (next(values, n, m))
 		{
 			for (int i = 0; i < m; i++)
 			{
-				if ((values[i] == 0) && (beginning(letters[i])) && (i < m - 1))
+				if ((values[i] == 0) && (begin[i]) && (i < m - 1))
 					swap(values, i, i + 1);
 			}
 			count_of_variants++;
-			if (find_sum(values, length, count)) return;
+			if (find_sum(values, positions, length, count)) return;
 		}
 	}
-	return 0;
+	return;
 }
 
 
@@ -145,7 +157,8 @@ int main()
 	int count = 0, success = 1;
 	fscanf(stdin, "%s", str);
 	time_t start_time = clock();
-	for (int i = 0, j = 0; i < strlen(str); i++)
+	str_len = strlen(str);
+	for (int i = 0, j = 0; i < str_len; i++)
 	{
 		if ((str[i] == '+') || (str[i] == '='))
 			count++;
@@ -162,7 +175,8 @@ int main()
 			sum_first = str[i + 1];
 		success = 1;
 	}
-	variations(values, 10, strlen(letters), length, count);
+	letter_len = strlen(letters);
+	variations(values, 10, letter_len, length, count);
 	time_t end_time = clock();
 	printf("\nTime: %.3f sec\n", ((float)end_time - (float)start_time) / 1000);
 }
