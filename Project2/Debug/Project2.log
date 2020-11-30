@@ -1,15 +1,8 @@
 ﻿  Source.c
-D:\Visual Studio Projects\Rebus\Project2\Source.c(20,20): warning C4018: <: несоответствие типов со знаком и без знака
-D:\Visual Studio Projects\Rebus\Project2\Source.c(25,22): warning C4018: <: несоответствие типов со знаком и без знака
-D:\Visual Studio Projects\Rebus\Project2\Source.c(68,20): warning C4018: <: несоответствие типов со знаком и без знака
-D:\Visual Studio Projects\Rebus\Project2\Source.c(70,21): warning C4018: <: несоответствие типов со знаком и без знака
-D:\Visual Studio Projects\Rebus\Project2\Source.c(78,20): warning C4018: <: несоответствие типов со знаком и без знака
-D:\Visual Studio Projects\Rebus\Project2\Source.c(114,21): warning C4018: <: несоответствие типов со знаком и без знака
-D:\Visual Studio Projects\Rebus\Project2\Source.c(134,27): warning C4047: функция: "unsigned int *" отличается по уровням косвенного обращения от "unsigned int (*)[100]"
-D:\Visual Studio Projects\Rebus\Project2\Source.c(134,17): warning C4024: find_positions: различные типы для формального и фактического параметров 1
-D:\Visual Studio Projects\Rebus\Project2\Source.c(135,18): warning C4047: функция: "unsigned int *" отличается по уровням косвенного обращения от "unsigned int (*)[10]"
-D:\Visual Studio Projects\Rebus\Project2\Source.c(135,12): warning C4024: beginning: различные типы для формального и фактического параметров 1
-D:\Visual Studio Projects\Rebus\Project2\Source.c(161,27): warning C4018: <: несоответствие типов со знаком и без знака
-D:\Visual Studio Projects\Rebus\Project2\Source.c(166,17): warning C4018: <: несоответствие типов со знаком и без знака
-D:\Visual Studio Projects\Rebus\Project2\Source.c(83): warning C4715: position: значение возвращается не при всех путях выполнения
+D:\Visual Studio Projects\Rebus\Project2\Source.c(137,17): warning C4018: <: несоответствие типов со знаком и без знака
+D:\Visual Studio Projects\Rebus\Project2\Source.c(156,27): warning C4047: функция: "unsigned int *" отличается по уровням косвенного обращения от "unsigned int (*)[100]"
+D:\Visual Studio Projects\Rebus\Project2\Source.c(156,17): warning C4024: find_positions: различные типы для формального и фактического параметров 1
+D:\Visual Studio Projects\Rebus\Project2\Source.c(157,18): warning C4047: функция: "unsigned int *" отличается по уровням косвенного обращения от "unsigned int (*)[10]"
+D:\Visual Studio Projects\Rebus\Project2\Source.c(157,12): warning C4024: begin_end: различные типы для формального и фактического параметров 1
+D:\Visual Studio Projects\Rebus\Project2\Source.c(82): warning C4715: position: значение возвращается не при всех путях выполнения
   Project2.vcxproj -> D:\Visual Studio Projects\Rebus\Debug\Project2.exe
