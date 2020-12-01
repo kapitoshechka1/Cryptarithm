@@ -11,7 +11,7 @@ void print(int* values, int n)
 	printf("\n");
 }
 
-void begin_end(unsigned* begin, char* str, char* letters, int letter_len, int str_len)
+void beginning(unsigned* begin, char* str, char* letters, int letter_len, int str_len)
 {
 	begin[0] = 1;
 	for (int i = 1; i < str_len; i++)
@@ -150,8 +150,12 @@ void variations(char* str, int n)
 		char_swap(letters, position(letters, sum_first, letter_len), 0);
 	swap(values, 0, 1);
 	find_positions(&positions, str, letters, letter_len, str_len);
-	begin_end(&begin, str, letters, letter_len, str_len);
-	if (find_sum(str, values, positions, length, str_len, count)) return;
+	beginning(&begin, str, letters, letter_len, str_len);
+	if (find_sum(str, values, positions, length, str_len, count))
+	{
+		printf("\n\nVariants: %d\n", count_of_variants);
+		return;
+	}
 	if (n >= letter_len)
 	{
 		while (next(values, n, letter_len))
@@ -163,10 +167,13 @@ void variations(char* str, int n)
 					swap(values, i, i + 1);
 			}
 			count_of_variants++;
-			if (find_sum(str, values, positions, length, str_len, count)) return;
+			if (find_sum(str, values, positions, length, str_len, count))
+			{
+				printf("\n\nVariants: %d\n", count_of_variants);
+				return;
+			}
 		}
 	}
-	printf("\n\nVariants: %d\n", count_of_variants);
 	return;
 }
 
