@@ -120,7 +120,7 @@ int find_sum(char* str, int* values, int* positions, int* length, int str_len, i
 void variations(char* str, int n)
 {
 	unsigned count_of_variants = 0;
-	char letters[10] = { 0 };
+	char letters[11] = { 0 };
 	int sum_first = 0;
 	int length[10] = { 0 }, values[11] = { 0 };
 	int count = 0, success = 1;
@@ -166,12 +166,12 @@ void variations(char* str, int n)
 				if ((values[i] == 0) && (begin[i]) && (i < letter_len - 1))
 					swap(values, i, i + 1);
 			}
-			count_of_variants++;
 			if (find_sum(str, values, positions, length, str_len, count))
 			{
 				printf("\n\nVariants: %d\n", count_of_variants);
 				return;
 			}
+			count_of_variants++;
 		}
 	}
 	return;
